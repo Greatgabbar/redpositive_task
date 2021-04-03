@@ -38,13 +38,14 @@ function App() {
   useEffect(()=>{
     console.log(process.env.REACT_APP_KEY);
     navigator.geolocation.getCurrentPosition(function(position) {
-      setPos({
+      const tenp={
           lat : position.coords.latitude,
           alt : position.coords.longitude
-      })
+      };
+      setPos(tenp);
       axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${process.env.REACT_APP_KEY}`).then(data=>{
-        console.log(data.data);
         setState({
+          ...state,
           cityName : data.data.name,
           country : data.data.sys.country,
           humidity : data.data.main.humidity,
@@ -59,7 +60,7 @@ function App() {
   return (
     <div className="App">
       <div className={classes.root}>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         <Grid item xs={12}>
           <Typography variant="h3" className={classes.paper}>
             Weather
@@ -72,7 +73,7 @@ function App() {
           {/* <GMap/> */}
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Paper className={classes.paper}>xs=6 sm=3</Paper>
+          <Forcast data={pos} />
         </Grid>
         <Grid item xs={6} sm={3}>
           <Paper className={classes.paper}>xs=6 sm=3</Paper>

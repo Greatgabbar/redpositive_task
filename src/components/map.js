@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import {useEffect , useState} from 'react'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import Paper from '@material-ui/core/Paper';
 import {Grid ,Container ,Typography  } from '@material-ui/core';
 
 const mapStyles={
