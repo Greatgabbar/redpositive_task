@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
 import {useEffect , useState} from 'react'
-import Paper from '@material-ui/core/Paper';
 import {Grid , Typography } from '@material-ui/core';
 import Location from '../src/components/location';
 import GMap from '../src/components/map';
@@ -69,17 +68,14 @@ function App() {
         <Grid item xs={12} sm={6}>
           <Location data={state} />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          {/* <GMap/> */}
+        <Grid container style={{position : "relative"}} item xs={12} sm={6}>
+          <GMap/>
         </Grid>
         <Grid item xs={12} sm={6}>
           <Forcast data={pos} />
         </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>xs=6 sm=3</Paper>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>xs=6 sm=3</Paper>
+        <Grid item xs={12} sm={6}>
+          <Currency con={state.country} />
         </Grid>
       </Grid>
     </div>

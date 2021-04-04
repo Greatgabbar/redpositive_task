@@ -29,7 +29,7 @@ const Location =(props)=>{
         setDate(date);
     },[])
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    const val=date ? `${date.getHours()}:${date.getMinutes()}, ${months[date.getDate()]} ${date.getMonth()}` : null;
+    const val=date ? `${date.getHours()}:${date.getMinutes()}, ${months[date.getMonth()]} ${date.getDate()}` : null;
     return(
         <div className={classes.text}>
         <Typography variant="body1" color="secondary"> 

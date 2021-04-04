@@ -5,7 +5,8 @@ import {Grid ,Container ,Typography  } from '@material-ui/core';
 
 const mapStyles={
     height : "100%",
-    width : "100%"
+    width : "100%",
+    position:"absolute"
 }
 
 const GMap =(props)=>{
@@ -25,17 +26,17 @@ const GMap =(props)=>{
     },[])
 
     return (
-        <Container maxWidth="sm">
+        <div style={{height:"250px"}}>
         <Map
           google={props.google}
           zoom={1}
-        //   containerStyle={{position : "relative"}}
-        //   style={{height : "50%",width:"50%"}}
+          containerStyle={{position : "absolute" , height:"100%" , width:"100%"}}
+          style={mapStyles}
           initialCenter={{ lat: pos.lat, lng: pos.alt}}
         >
           <Marker position={{ lat: pos.lat, lng: pos.alt}} />
         </Map>
-        </Container>
+        </div>
     );
 }
 

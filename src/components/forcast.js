@@ -1,7 +1,13 @@
-import {Typography, Paper , Avatar,Table,TableContainer,TableHead,TableCell,TableRow,TableBody,Button,Divider,Container} from '@material-ui/core';
+import {Typography,Snackbar, Paper , Avatar,Table,TableContainer,TableHead,TableCell,TableRow,TableBody,Button,Divider,Container} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import {useState , useEffect} from 'react';
+import MuiAlert from '@material-ui/lab/Alert';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
+  
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,13 +27,23 @@ const Forcast =(props)=>{
     const [daily,setDaily] = useState([]);
     const [ind,setInd] = useState(1);
     const [data,Setdata] = useState([]); 
-    
+    const [open, setOpen] = useState(false);
     const changedata = ()=>{
-        if(ind+3>=daily.length)
+        if(ind+3>=daily.length){
+            setOpen(true);
             return;
+        }
         let i=ind+3;
         setInd(i);  
     }
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpen(false);
+      };
 
     useEffect(()=>{
         console.log(props.data)
@@ -60,6 +76,11 @@ const Forcast =(props)=>{
             <Button variant="contained" color="primary" onClick={changedata}>
                 Next 3 Days Forcast
             </Button>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert severity="warning" onClose={handleClose}>
+          Only 7 days data available now !!
+        </Alert>
+      </Snackbar>
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableBody>
